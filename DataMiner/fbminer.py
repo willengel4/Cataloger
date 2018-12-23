@@ -31,11 +31,11 @@ with urllib.request.urlopen(full_url) as response:
         post_id = post['id']
 
         #create post dictionary
-        post = { "_id" : post_id, "post_date": post_date_time, "post_message" : post_message }
+        post_dict = { "_id" : post_id, "post_date": post_date_time, "post_message" : post_message }
 
         #insert post into db
         try:
-            mongo_db_fb.insert_one(post)
+            mongo_db_fb.insert_one(post_dict)
         
         #duplicate posts, etc
         except:

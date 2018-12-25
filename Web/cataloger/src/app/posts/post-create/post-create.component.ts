@@ -1,5 +1,4 @@
-import { Component } from '@angular/core';
-import { post } from 'selenium-webdriver/http';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-post-create',
@@ -7,11 +6,16 @@ import { post } from 'selenium-webdriver/http';
   styleUrls: ['./post-create.component.css']
 })
 export class PostCreateComponent {
-  newPost = 'no content';
-  enteredValue = '';
+  enteredTitle = '';
+  enteredContent = '';
+  @Output() postCreated = new EventEmitter();
 
   onAddPost(postInput: HTMLTextAreaElement) {
-    this.newPost = this.enteredValue;
+    const post = {
+      title: this.enteredTitle,
+      content: this.enteredContent
+    };
+    this.postCreated.emit(post);
   }
 }
 

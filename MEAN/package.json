@@ -1,0 +1,22 @@
+{
+  "name": "mean",
+  "version": "1.0.0",
+  "description": "My first mean app",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "MongoDB",
+    "Express",
+    "AngularJS",
+    "Node.js"
+  ],
+  "author": "Will Engel",
+  "license": "ISC",
+  "dependencies": {
+    "angular": "^1.7.5",
+    "express": "^4.16.4",
+    "grunt": "^1.0.3"
+  }
+}

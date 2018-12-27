@@ -48,5 +48,4 @@ with urllib.request.urlopen(full_url) as response:
 
 #prints the reddit posts
 posts = mongo_db_reddit.find()
-for post in posts:
-    print('Post: ', post)
+print(len(posts))

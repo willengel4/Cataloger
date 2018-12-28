@@ -1,1 +1,16 @@
 Binding: event binding, string interpolation, property binding, 2-way binding
+
+MONGO:
+> use mean
+> show dbs
+> show collections
+> db.posts.insert({ "title":"First Post", "user":"bob" })
+> db.posts.find()
+> db.posts.drop()
+> db.posts.update({"user":"alice"}, {"title":"Second Pooost", "user": "alice"}, {upsert: false})
+> db.posts.find( { "user":"alice" } )
+> db.posts.find({ "user": "alice", "commentsCount": { $gt: 10 }
+> db.posts.find( { $or: [{ "user": "alice" }, { "user": "bob" }] })
+> db.posts.remove()
+> db.posts.remove({ "user": "alice" })
+> db.posts.remove({ "user": "alice" }, true)

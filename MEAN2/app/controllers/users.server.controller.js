@@ -8,4 +8,14 @@ exports.create = function(req, res, next) {
             res.json(user);
         }
     });
+
+    res.send('Hello World1');
+};
+
+exports.list = function(req, res, next) {
+    User.find({}, function(err, users) {
+        if (err) throw err;
+      
+        console.log(users);
+      });
 };

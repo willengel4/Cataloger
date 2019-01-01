@@ -1,20 +1,43 @@
-var http = require("http");
+var connect = require("connect");
+var app = connect();
 
-var MongoClient = require("mongodb").MongoClient;
-var url = "mongodb://localhost:27017/";
+var listFB = function(req, res, next) {
+  var MongoClient = require("mongodb").MongoClient;
+  var url = "mongodb://localhost:27017/";
 
-http.createServer(function(req, res) {
+  MongoClient.connect(url, function(err, db) {
+      if (err) throw err;
+
+      var dbo = db.db("cataloger");
+      dbo.collection("fb").find({}).toArray(function(err, result) {
+          if (err) throw err;
+          res.end(JSON.stringify(result));
+          db.close();
+        });
+    }
+  );
+};
+
+var listReddit = function(req, res, next) {
+    var MongoClient = require("mongodb").MongoClient;
+    var url = "mongodb://localhost:27017/";
+  
     MongoClient.connect(url, function(err, db) {
         if (err) throw err;
-        
+  
         var dbo = db.db("cataloger");
-        dbo.collection("fb").findOne({}, function(err, result) {
+        dbo.collection("reddit").find({}).toArray(function(err, result) {
             if (err) throw err;
-            res.end(result.post_message);
+            res.end(JSON.stringify(result));
             db.close();
-        });
-    });
+          });
+      }
+    );
+  };
 
-}).listen(3000);
+app.use("/fb", listFB);
+app.use("/reddit", listReddit);
+app.listen(3000);
 
-console.log("Server running at http://localhost:3000/");
+console.log("http://localhost:3000/fb");
+console.log("http://localhost:3000/reddit");
